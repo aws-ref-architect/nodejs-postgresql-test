@@ -14,7 +14,7 @@
     "scripts": {
         "start": "node index.js",
         "database": "node ./database/database_init.js"
-   },
+    },
     "dependencies": {
         "knex": "^2.5.1",
         "pg": "^8.13.0"
