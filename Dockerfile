@@ -7,4 +7,3 @@ COPY database/* ./database/
 COPY index.js ./index.js
 COPY knexfile.js ./knexfile.js
 RUN npm ci
-
