@@ -12,6 +12,7 @@ knex init
 
 2. Setup Database:
 npm database install
+source .env.local
 npm database start
 
 # Helper Docs

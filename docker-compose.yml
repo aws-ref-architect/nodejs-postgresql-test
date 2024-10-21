@@ -1,0 +1,31 @@
+version: "2.29.6"
+
+services:
+  image: postgres:17.0
+  restart: always
+  env_file: ./.env.local
+  environment:
+    - POSTGRES_USER=$DATABASE_USER
+    - POSTGRES_PASSWORD=$DATABASE_ACCESS_KEY 
+    - POSTGRES_DB="postgres"
+  ports:
+    - 5432
+  volumes:
+  - pgdata:/var/lib/postgresql/data
+  healthcheck:
+    test: ["CMD-SHELL", "pg_isready"]
+    interval: 1s
+    timeout: 5s
+    retries: 10
+
+  web:
+    build: ./app
+    ports:
+      - "8080:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: ["node", "start"]
+
+volumes:
+  database:
