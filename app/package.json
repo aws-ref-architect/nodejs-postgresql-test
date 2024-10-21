@@ -4,6 +4,7 @@
     "description": "Sample repository for VRIFY interview practice.",
     "author": "Dustan Curtis",
     "main": "server.js",
+    "private": true,
     "engines": {
         "node": "20.18.0"
     },
