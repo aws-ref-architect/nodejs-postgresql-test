@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "description": "Sample repository for VRIFY interview practice.",
     "author": "Dustan Curtis",
-    "main": "index.js",
+    "main": "server.js",
     "engines": {
         "node": "20.18.0"
     },
@@ -14,13 +14,6 @@
     "scripts": {
         "start": "node index.js",
         "database": "node ./database/database_init.js"
-    },
-    "dependencies": {
-        "knex": "^2.5.1",
-        "pg": "^8.13.0"
-    },
-    "devDependencies": {
-        "dotenv": "^16.4.5"
     },
     "license": "MIT"
 }
