@@ -12,8 +12,11 @@
         "url": "https://github.com/aws-ref-architect/node-postgresql-test/"
     },
     "scripts": {
-        "start": "node index.js",
+        "start": "node server.js",
         "database": "node ./database/database_init.js"
+    },
+    "dependencies": {
+        "express": "^4.21.1"
     },
     "license": "MIT"
 }
