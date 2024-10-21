@@ -22,7 +22,16 @@ services:
       retries: 10
     command: ["psql", "-h", "${DATABASE_HOST}", "-p", "${DATABASE_PORT}", -d", "-W", "${DATABASE_PASSWORD}", "${DATABASE_DEFAULT_DATABASE}", "-U", "${DATABASE_USER}" ]
 
-  web:
+  frontend:
+      build: ./frontend/app/
+      ports:
+        - 80:80
+        - 443:443
+      environment:
+        - DEFAULT_FRONTEND_PATH=${DEFAULT_FRONTEND_PATH}
+      command: ["node", "start"]
+
+  backend:
     build: ./app/
     ports:
       - 8080:8000
