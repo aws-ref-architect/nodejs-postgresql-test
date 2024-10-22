@@ -10,9 +10,10 @@ module.exports = {
       client: 'pg',
       connection: {
         host : '127.0.0.1',
-        user : '[db_username]',
-        password : '[db_password]',
-        database : '[db_name]',
+        user : process.env.DATABASE_USER,
+        password : process.env.DATABASE_PASSWORD,
+        database : process.env.DATABASE_NAME,
+        port: process.env.DATABASE_PORT,
         charset: 'utf8'
       },
       migrations: {
