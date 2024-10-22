@@ -3,6 +3,8 @@
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
+const knex = require("knex");
+
 module.exports = {
     development: {
       client: 'pg',
