@@ -3,36 +3,40 @@
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  height: 10vmin;
+  margin: 0;
+  border: 1px solid black;
+  padding: 1em;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
+  margin: 0.5em 0;
+  text-decoration: underline;
+}
+
+.App-main {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 }
 
-.App-link {
-  color: #61dafb;
+.App-body {
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+dl, dt, dd {
+  padding: 0;
+  margin: 0;
+}
+
+.repo-list {
+  font-size: 0.875em;
+  
+}
+
+.repo-list-item {
+  font-size: 0.875em;
 }
