@@ -1,9 +1,9 @@
-import logo from './logo.svg';
+import logo from './vrify_logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <main className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -18,7 +18,7 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
+    </main>
   );
 }
 
