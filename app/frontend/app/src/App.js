@@ -11,7 +11,7 @@ function App() {
           <dt className="repo-list-header">Sample apps for web development/Site Reliability Engineering:</dt>
           <dd className="repo-item">
             <a className="repo-item-link"
-              href="https://github.com/aws-ref-architect/nodejs-postgresql-test">- CircleCI, NodeJS, PostgreSQL, and React test environments.</a>
+              href="https://github.com/aws-ref-architect/nodejs-postgresql-test">- CircleCI, NodeJS, PostgreSQL, and React test environments</a>
           </dd>
           <dt className="repo-list-header">Sample Terraform app to host your very own personal cloud:</dt>
           <dd className="repo-item">
