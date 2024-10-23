@@ -1,16 +1,15 @@
-version: "2.29.6"
-
 services:
   postgres:
     image: postgres:17.0
     restart: always
-    env_file: "./.env.local"
+    env_file: .env
     environment:
-      - DATABASE_USER=$DB_USER
-      - DATABASE_PASSWORD=$DB_PASSWORD
-      - DATABASE_DEFAULT_DATABASE="postgres"
+      - POSTGRES_USER="${DATABASE_USER}"
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB="test_database"
       - DATABASE_HOST="localhost"
-      - DATABASE_PORT=$DATABASE_PORT
+      - DATABASE_PORT=${DATABASE_PORT}
+      - PGUSER=${DATABASE_USER}
     ports:
       - "${DATABASE_PORT}:${DATABASE_PORT}"
     expose:
@@ -20,30 +19,35 @@ services:
       interval: 1s
       timeout: 5s
       retries: 10
-    command: ["psql", "-h", "${DATABASE_HOST}", "-p", "${DATABASE_PORT}", -d", "-W", "${DATABASE_PASSWORD}", "${DATABASE_DEFAULT_DATABASE}", "-U", "${DATABASE_USER}" ]
+    volumes:
+      - db_data:/var/lib/postgresql/data    
 
   frontend:
-      build: ./frontend/app/
-      ports:
-        - 80:80
-        - 443:443
-      environment:
-        - DEFAULT_FRONTEND_PATH=${DEFAULT_FRONTEND_PATH}
-      command: ["node", "start"]
+    build: app/frontend/app/
+    ports:
+      - 80:80
+    environment:
+      - DEFAULT_FRONTEND_PATH=${DEFAULT_FRONTEND_PATH}
+    command: ["node", "start"]
 
   backend:
-    build: ./app/
+    build: ./app/backend/app
     ports:
       - 8080:8000
     expose:
       - 8080
+    env_file:
+      - .env
     environment:
-      - DATABASE_USER="${DATABASE_USER}"
-      - DATABASE_PASSWORD="${DATABASE_PASSWORD}"
-      - DATABASE_DEFAULT_DATABASE="postgres"
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB="test_database"
       - DATABASE_HOST="localhost"
+      - DATABASE_PORT=${DATABASE_PORT}
     depends_on:
       postgres:
         condition: "service_healthy"
-    command: ["node", "start"]
+    command: ["psql", "-h", "${DATABASE_HOST}", "-p", "${DATABASE_PORT}", "-W", "${POSTGRES_PASSWORD}", "-d", "${DATABASE_DEFAULT_DATABASE}", "-U", "${POSTGRES_USER}" ]
 
+volumes:
+  db_data:
