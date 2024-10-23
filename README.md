@@ -17,9 +17,9 @@ npm database start
 
 ## Useful Shell Commands for Docker
 
-Turn off all running containers: `docker-compose down`
-Delete all containers: `docker rm -fv $(docker ps -aq)`
-List processes using specific port: sudo lsof -i -P -n | grep 3000
+- Turn off all running containers: `docker-compose down`
+- Delete all containers: `docker rm -fv $(docker ps -aq)`
+- List processes using specific port: `sudo lsof -i -P -n | grep 3000`
 
 
 # Helper Docs
