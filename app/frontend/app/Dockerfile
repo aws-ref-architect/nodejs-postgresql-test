@@ -4,4 +4,6 @@ COPY package.json ./package.json
 COPY package-lock.json ./package-lock.json
 COPY ./public/* ./public/
 COPY ./src/* ./app/
-RUN npm ci
+RUN npm run build
+RUN npm install --global --unsafe-perm serve
+RUN serve -s build

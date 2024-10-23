@@ -10,6 +10,8 @@ services:
       - DATABASE_HOST="localhost"
       - DATABASE_PORT=${DATABASE_PORT}
       - PGUSER=${DATABASE_USER}
+      - BACKEND_PORT=${BACKEND_PORT}
+      - FRONTEND_PORT=${FRONTEND_PORT}
     ports:
       - "${DATABASE_PORT}:${DATABASE_PORT}"
     expose:
@@ -24,30 +26,32 @@ services:
 
   frontend:
     build: app/frontend/app/
-    ports:
-      - 80:80
+    env_file: .env
     environment:
-      - DEFAULT_FRONTEND_PATH=${DEFAULT_FRONTEND_PATH}
-    command: ["node", "start"]
+      - FRONTEND_PORT="${FRONTEND_PORT}"
+    ports:
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+    expose:
+      - "${FRONTEND_PORT}"
+    command: ["npm", "start"]
 
   backend:
     build: ./app/backend/app
     ports:
-      - 8080:8000
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
     expose:
-      - 8080
-    env_file:
-      - .env
+      - "${BACKEND_PORT}"
+    env_file: .env
     environment:
-      - POSTGRES_USER=${DATABASE_USER}
-      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
-      - POSTGRES_DB="test_database"
+      - DATABASE_USER="${DATABASE_USER}"
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_NAME="test_database"
       - DATABASE_HOST="localhost"
       - DATABASE_PORT=${DATABASE_PORT}
+      - FRONTEND_PORT=${FRONTEND_PORT}
     depends_on:
       postgres:
         condition: "service_healthy"
-    command: ["psql", "-h", "${DATABASE_HOST}", "-p", "${DATABASE_PORT}", "-W", "${POSTGRES_PASSWORD}", "-d", "${DATABASE_DEFAULT_DATABASE}", "-U", "${POSTGRES_USER}" ]
 
 volumes:
   db_data:
