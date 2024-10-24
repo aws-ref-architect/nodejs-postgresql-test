@@ -1,6 +1,6 @@
 FROM node:lts-iron
 WORKDIR /workspace
-COPY .env.local ./
+COPY .env ./.env
 COPY package.json ./package.json
 COPY package-lock.json ./package-lock.json
 COPY database/* ./database/

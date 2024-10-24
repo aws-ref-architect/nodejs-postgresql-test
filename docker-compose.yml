@@ -25,7 +25,7 @@ services:
       - db_data:/var/lib/postgresql/data    
 
   frontend:
-    build: app/frontend/app/
+    build: ./app/frontend/app/
     env_file: .env
     environment:
       - FRONTEND_PORT="${FRONTEND_PORT}"
@@ -33,7 +33,7 @@ services:
       - "${FRONTEND_PORT}:${FRONTEND_PORT}"
     expose:
       - "${FRONTEND_PORT}"
-    command: ["npm", "start"]
+#    command: ["npm", "start"]
 
   backend:
     build: ./app/backend/app

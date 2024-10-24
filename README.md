@@ -3,6 +3,10 @@ Test knowledge for interview prep with basic NodeJS app and basic PostgreSQL sch
 
 # Setup
 
+1. Setup frontend app:
+cd app/frontend/app
+
+
 1. Setup / Install Backend app:
 npm install
 npm install --save -g pg
